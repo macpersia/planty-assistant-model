@@ -1,0 +1,2 @@
+# Planty Assistant Model
+
