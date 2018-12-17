@@ -1,4 +1,6 @@
 node {
-	sh 'mvn package'
+    withMaven(jdk: 'jdk8'/*, tempBinDir: ''*/) {
+        sh "mvn package"
+    }	
 }
 
