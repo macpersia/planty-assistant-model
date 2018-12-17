@@ -20,6 +20,7 @@ node {
 		nodejs('nodejs-10.14.2') {
 			sh "npm install"
 			sh "npm run build"
+			sh "cp package.json lib/"
 			sh "npm pack lib/"
 		}
 	}
