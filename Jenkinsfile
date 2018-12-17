@@ -1,8 +1,4 @@
 node {
-	//withMaven(jdk: 'jdk8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
-	//	sh "mvn package"
-	//}	
-
 	def branch = "${env.BRANCH_NAME}".toLowerCase()
 
 	stage('git') {
@@ -14,8 +10,10 @@ node {
 		git url: "https://macpersia@bitbucket.org/planty-assistant-devs/planty-assistant-model.git", branch: branch
 	}
 	
-    stage('build') {
-        sh('mvn install')
-    }
+	stage('build') {
+		withMaven(jdk: 'jdk8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
+			sh "mvn install"
+		}
+	}
 }
 
