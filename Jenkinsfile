@@ -1,2 +1,4 @@
-sh 'mvn package'
+node {
+	sh 'mvn package'
+}
 
