@@ -1,10 +1,12 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.6.0'
+        maven 'apache-maven-3.6.0'
         jdk 'jdk8'
     }
-	def branch = "${env.BRANCH_NAME}".toLowerCase()
+    script {
+	    def branch = "${env.BRANCH_NAME}".toLowerCase()
+	}
     stage('git') {
 		/* Changed due to a bug: "${scmBranch} is returning UNKNOW"
 		 * (https://github.com/mojohaus/buildnumber-maven-plugin/issues/53#issuecomment-373110568) */
