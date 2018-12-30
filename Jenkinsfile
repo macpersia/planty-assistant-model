@@ -1,8 +1,8 @@
-node {
-    //agent any
+pipeline {
+    agent any
     tools {
         maven 'Maven 3.6.0'
-        jdk 'jdk8' 
+        jdk 'jdk8'
     }
 	def branch = "${env.BRANCH_NAME}".toLowerCase()
     stage('git') {
