@@ -9,6 +9,7 @@
 node ('ecs2') {
     def branch = "${env.BRANCH_NAME}".toLowerCase()
 
+    tool name: 'jdk10', type: 'jdk'
     stage('versions in use') {
         sh """
             git --version
