@@ -29,6 +29,7 @@ node {
 			sh "npm run build"
 			sh "cp package.json lib/"
 			sh "npm pack lib/"
+			sh "npm publish --registry http://repo-nexus-service:8081/repository/npm-local/"
 		}
 	}
 }
