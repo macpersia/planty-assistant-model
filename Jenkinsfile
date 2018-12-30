@@ -24,7 +24,7 @@ node {
 	}
 
 	stage('build4npm') {
-		nodejs(nodeJSInstallationName: 'nodejs-10.14.2', configId: 'MyNpmrcConfig') {
+		nodejs(nodeJSInstallationName: 'nodejs-10.14.2', configId: 'my-npmrc') {
 			sh "npm install"
 			sh "npm run build"
 			sh "cp package.json lib/"
