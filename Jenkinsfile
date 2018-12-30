@@ -1,12 +1,13 @@
-pipeline {
-    agent any
-    tools {
-        maven 'apache-maven-3.6.0'
-        jdk 'jdk8'
-    }
-    script {
-	    def branch = "${env.BRANCH_NAME}".toLowerCase()
-	}
+//pipeline {
+//    agent any
+//    tools {
+//        maven 'apache-maven-3.6.0'
+//        jdk 'jdk8'
+//    }
+//    script {
+//	    def branch = "${env.BRANCH_NAME}".toLowerCase()
+node {
+    def branch = "${env.BRANCH_NAME}".toLowerCase()
     stage('git') {
 		/* Changed due to a bug: "${scmBranch} is returning UNKNOW"
 		 * (https://github.com/mojohaus/buildnumber-maven-plugin/issues/53#issuecomment-373110568) */
