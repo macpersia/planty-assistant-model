@@ -29,17 +29,18 @@ node ('ecs2') {
 	}
 	
 	stage('build4mvn') {
-		//withMaven(jdk: 'jdk8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
+		//withMaven(jdk: 'jdk-8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
 			sh "mvn install -DskipTests"
 		//}
 	}
 
 	stage('build4npm') {
-		//nodejs('nodejs-10.14.2') {
+		//nodejs(nodeJSInstallationName: 'nodejs-10.14.2', configId: 'my-npmrc') {
 			sh "npm install"
 			sh "npm run build"
 			sh "cp package.json lib/"
-			sh "npm pack lib/"
+			//sh "npm pack lib/"
+            sh "npm publish lib/ --registry http://repo-nexus-service:8081/repository/npm-local/"
 		//}
 	}
 }
