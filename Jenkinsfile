@@ -18,7 +18,7 @@ node {
 	}
 	
 	stage('build4mvn') {
-		withMaven(jdk: 'jdk8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
+		withMaven(jdk: 'jdk-8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
 			sh "mvn install -DskipTests"
 		}
 	}
