@@ -24,14 +24,12 @@ node {
 	}
 
 	stage('build4npm') {
-		nodejs(nodeJSInstallationName: 'nodejs-10.14.2') {
-            withNPM(npmrcConfig: 'my-npmrc') {
-                sh "npm install"
-                sh "npm run build"
-                sh "cp package.json lib/"
-                //sh "npm pack lib/"
-                sh "npm publish lib/ --registry http://repo-nexus-service:8081/repository/npm-local/"
-            }
+		nodejs(nodeJSInstallationName: 'nodejs-10.14.2', configId: 'my-npmrc') {
+            sh "npm install"
+            sh "npm run build"
+            sh "cp package.json lib/"
+            //sh "npm pack lib/"
+            sh "npm publish lib/ --registry http://repo-nexus-service:8081/repository/npm-local/"
 		}
 	}
 }
