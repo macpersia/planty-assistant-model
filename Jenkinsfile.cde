@@ -12,8 +12,8 @@ node {
     stage('versions in use') {
         sh """
             git --version
-            node --version
-            npm --version
+            #node --version
+            #npm --version
             java -version
             mvn --version
         """
