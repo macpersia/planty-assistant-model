@@ -29,8 +29,7 @@ node ('ecs2') {
 	}
 
 	stage('build4mvn') {
-		//withMaven(jdk: 'jdk8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
-			//sh "mvn deploy -DskipTests -DaltDeploymentRepository=snapshots::default::http://artifactory.topdanmark.local/artifactory/libs-snapshot"
+		//withMaven(jdk: 'jdk-8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
 			sh "mvn package -DskipTests"
 		//}
 	}
@@ -43,6 +42,7 @@ node ('ecs2') {
 	}
 
 	stage('publish packages') {
+    	//sh "mvn deploy -DskipTests -DaltDeploymentRepository=snapshots::default::http://artifactory.topdanmark.local/artifactory/libs-snapshot"
 	    topCompliance()
 		sh "cp package.json lib/"
 		//sh "npm pack lib/"
