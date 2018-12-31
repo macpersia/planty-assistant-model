@@ -27,21 +27,26 @@ node ('ecs2') {
 		//def repoPath = jobName.substring(0, jobName.lastIndexOf('/'))
 		git url: "https://macpersia@bitbucket.org/planty-assistant-devs/planty-assistant-model.git", branch: branch
 	}
-	
+
 	stage('build4mvn') {
-		//withMaven(jdk: 'jdk-8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
-			sh "mvn install -DskipTests"
+		//withMaven(jdk: 'jdk8', maven: 'maven-3.6.0', /*, tempBinDir: ''*/) {
+			//sh "mvn deploy -DskipTests -DaltDeploymentRepository=snapshots::default::http://artifactory.topdanmark.local/artifactory/libs-snapshot"
+			sh "mvn package -DskipTests"
 		//}
 	}
 
 	stage('build4npm') {
-		//nodejs(nodeJSInstallationName: 'nodejs-10.14.2', configId: 'my-npmrc') {
+		//nodejs('nodejs-10.14.2') {
 			sh "npm install"
 			sh "npm run build"
-			sh "cp package.json lib/"
-			//sh "npm pack lib/"
-            sh "npm publish lib/ --registry http://repo-nexus-service:8081/repository/npm-local/"
 		//}
+	}
+
+	stage('publish packages') {
+	    topCompliance()
+		sh "cp package.json lib/"
+		//sh "npm pack lib/"
+		sh "npm publish lib/"
 	}
 }
 
