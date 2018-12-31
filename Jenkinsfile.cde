@@ -34,6 +34,11 @@ node ('ecs2') {
 		//}
 	}
 
+	stage('publish artifact') {
+    	//sh "mvn deploy -DskipTests -DaltDeploymentRepository=snapshots::default::http://artifactory.topdanmark.local/artifactory/libs-snapshot"
+	    topCompliance()
+    }
+
 	stage('build4npm') {
 		//nodejs('nodejs-10.14.2') {
 			sh "npm install"
@@ -41,9 +46,7 @@ node ('ecs2') {
 		//}
 	}
 
-	stage('publish packages') {
-    	//sh "mvn deploy -DskipTests -DaltDeploymentRepository=snapshots::default::http://artifactory.topdanmark.local/artifactory/libs-snapshot"
-	    topCompliance()
+	stage('publish package') {
 		sh "cp package.json lib/"
 		//sh "npm pack lib/"
 		sh "npm publish lib/"
