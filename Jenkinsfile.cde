@@ -48,8 +48,9 @@ node ('ecs-fargate') {
 
 	stage('publish package') {
 		sh "cp package.json lib/"
-		//sh "npm pack lib/"
-		sh "npm publish lib/"
+		////sh "npm pack lib/"
+		//sh "npm publish lib/"
+		topComplianceNPM()
 	}
 }
 
