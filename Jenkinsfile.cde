@@ -35,8 +35,8 @@ node ('ecs-fargate') {
 	}
 
 	stage('publish artifact') {
-    	//sh "mvn deploy -DskipTests -DaltDeploymentRepository=snapshots::default::http://artifactory.topdanmark.local/artifactory/libs-snapshot"
-	    topCompliance()
+    	sh "mvn deploy -DskipTests -DaltDeploymentRepository=libs-snapshot::default::http://artifactory.topdanmark.local/artifactory/libs-snapshot"
+	    //topCompliance()
     }
 
 	stage('build4npm') {
@@ -48,10 +48,8 @@ node ('ecs-fargate') {
 
 	stage('publish package') {
 		sh "cp package.json lib/"
-		////sh "npm pack lib/"
-		//sh "npm publish lib/"
-		topComplianceNPM()
+		//sh "npm pack lib/"
+		sh "npm publish lib/ --registry http://artifactory.topdanmark.local/artifactory/api/npm/npm-local"
+		//topComplianceNPM()
 	}
 }
-
-
