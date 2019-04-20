@@ -1,8 +1,8 @@
 //pipeline {
 //    agent any
 //    tools {
-//        maven 'apache-maven-3.6.0'
-//        jdk 'jdk8'
+//        maven 'apache-maven-3.6.1'
+//        jdk 'jdk-8'
 //    }
 //    script {
 //	    def branch = "${env.BRANCH_NAME}".toLowerCase()
@@ -18,7 +18,7 @@ node {
 	}
 	
 	stage('build4mvn') {
-		withMaven(jdk: 'jdk-8', maven: 'maven-3.6.0', mavenSettingsConfig: 'my-maven-settings'/*, tempBinDir: ''*/) {
+		withMaven(jdk: 'jdk-8', maven: 'maven-3.6.1', mavenSettingsConfig: 'my-maven-settings'/*, tempBinDir: ''*/) {
 			sh "mvn deploy -DskipTests -DaltDeploymentRepository=local-snapshots::default::http://repo-nexus-service:8081/repository/maven-snapshots"
 		}
 	}
